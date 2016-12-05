@@ -36,4 +36,25 @@ class DefaultController extends Controller
         	'employees' => $employees,
         ]);
     }
+
+    public function planningAction() {
+        return $this->render('EcommerceBundle:Default:planning.html.twig');
+    }
+
+    public function contactAction() {
+        return $this->render('EcommerceBundle:Default:contact.html.twig');
+    }
+
+    public function suppliersAction() {
+        return $this->render('EcommerceBundle:Default:suppliers.html.twig');
+    }
+
+    public function clientsAction() {
+        return $this->render('EcommerceBundle:Default:clients.html.twig');
+    }
+
+    public function aboutAction() {
+        return $this->render('EcommerceBundle:Default:about.html.twig');
+    }
+
 }

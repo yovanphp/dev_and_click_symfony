@@ -3,3 +3,23 @@ ecommerce_homepage:
     defaults: { _controller: EcommerceBundle:Default:index, id: 0 }
     requirements:
         id:   \d+
+
+ecommerce_planning:
+    path:     /ecommerce/planning
+    defaults: { _controller: EcommerceBundle:Default:planning }
+
+ecommerce_suppliers:
+    path:     /ecommerce/suppliers
+    defaults: { _controller: EcommerceBundle:Default:suppliers }
+
+ecommerce_clients:
+    path:     /ecommerce/clients
+    defaults: { _controller: EcommerceBundle:Default:clients }
+
+ecommerce_contact:
+    path:     /ecommerce/contact
+    defaults: { _controller: EcommerceBundle:Default:contact }
+
+ecommerce_about:
+    path:     /ecommerce/about
+    defaults: { _controller: EcommerceBundle:Default:about }
