@@ -1,0 +1,5 @@
+ecommerce_homepage:
+    path:     /ecommerce/{id}
+    defaults: { _controller: EcommerceBundle:Default:index, id: 0 }
+    requirements:
+        id:   \d+

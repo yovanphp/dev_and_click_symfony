@@ -1,0 +1,12 @@
+ul.nav_elements {
+	padding: 0px;
+	margin: 0px;
+}
+
+li {
+	display: inline;
+}
+
+.main_nav {
+	content: '|';
+}

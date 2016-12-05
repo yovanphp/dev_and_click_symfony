@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %} 
+    <link href="{{ asset('style.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% set admin = 'admin@kiyodesigns.com' %}
+
+{% block body %}
+	
+	{% include 'EcommerceBundle:Default:navigation.html.twig' %}
+
+	<p>{{ admin }}</p>
+	
+	<p>Hello World! Your id is: {{ id }}</p>
+
+	<ul class="nav_elements">
+		{% for i in 'A'..'Z' %}
+			<li>{{ i }}</li>
+		{% endfor %}
+	</ul>
+
+	{% for employee in employees %}
+		<p>{{ loop.index }} : {{ employee.first_name }} {{ employee.last_name }}</p>
+	{% endfor %}
+
+	<p>{{ 'now' | date('d.m.y') }}</p>
+
+
+{% endblock %}
+
