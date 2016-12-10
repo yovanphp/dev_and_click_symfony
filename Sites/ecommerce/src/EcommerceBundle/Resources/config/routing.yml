@@ -1,25 +1,34 @@
 ecommerce_homepage:
-    path:     /ecommerce/{id}
-    defaults: { _controller: EcommerceBundle:Default:index, id: 0 }
+    path:     /{id}
+    defaults: { _controller: EcommerceBundle:Default:index, id: 1 }
     requirements:
         id:   \d+
 
 ecommerce_planning:
-    path:     /ecommerce/planning
+    path:     /planning
     defaults: { _controller: EcommerceBundle:Default:planning }
 
 ecommerce_suppliers:
-    path:     /ecommerce/suppliers
+    path:     /suppliers
     defaults: { _controller: EcommerceBundle:Default:suppliers }
 
 ecommerce_clients:
-    path:     /ecommerce/clients
+    path:     /clients
     defaults: { _controller: EcommerceBundle:Default:clients }
 
 ecommerce_contact:
-    path:     /ecommerce/contact
+    path:     /contact
     defaults: { _controller: EcommerceBundle:Default:contact }
 
 ecommerce_about:
-    path:     /ecommerce/about
-    defaults: { _controller: EcommerceBundle:Default:about }
+    path:     /about.{_format}
+    defaults: { _controller: EcommerceBundle:Default:about, _format: json }
+    requirements:
+        _format: json
+
+
+ecommerce_supplier:
+    path:     /supplier/{id}
+    defaults: { _controller: EcommerceBundle:Default:supplier }
+    requirements:
+      id: \d+

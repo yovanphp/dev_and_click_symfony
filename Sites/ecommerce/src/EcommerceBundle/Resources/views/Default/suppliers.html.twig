@@ -5,5 +5,19 @@
 
 {% block body %}
 	<h1>Suppliers</h1>
+
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Name</th>
+        </tr>
+        {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.location }}</td>
+                <td><a href="{{ path('ecommerce_supplier', {'id': supplier.id }) }}">{{ supplier.name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}
 

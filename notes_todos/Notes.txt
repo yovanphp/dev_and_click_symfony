@@ -1,0 +1,20 @@
+{% include 'EcommerceBundle:Default:navigation.html.twig' %}
+{% block section %} {% endblock %}
+
+<li><a href="{{ path('ecommerce_homepage') }}">Home</a></li>
+
+{% extends '::base.html.twig' %}
+
+Blocks in base.html.twig
+{% block stylesheets %}
+    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+{% block javascripts %}{% endblock %}
+
+return $this->render('EcommerceBundle:Default:index.html.twig', [
+    'id' => $id,
+    'employees' => $employees,
+    'hobby' => $hobby
+]);

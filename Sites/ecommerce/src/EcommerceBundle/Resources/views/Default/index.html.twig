@@ -13,6 +13,7 @@ nationality: 'Japanese'
 } %}
 {% set my_array = [ 'first', 'second', 40, [1, 2, 3, 4] ] %}
 
+{% block section %} {% include 'EcommerceBundle:Default/includes:section.html.twig' %} {% endblock %}
 {% block body %}
 
     <p>{{ admin }}</p>
