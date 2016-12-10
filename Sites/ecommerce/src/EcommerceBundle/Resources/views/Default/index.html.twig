@@ -1,28 +1,251 @@
 {% extends '::base.html.twig' %}
-{% block stylesheets %} 
-    <link href="{{ asset('style.css') }}" rel="stylesheet" />
+{% block stylesheets %}
+    <link href="{{ asset('style.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% set admin = 'admin@kiyodesigns.com' %}
+{% set person = {
+first_name: 'Nicky',
+last_name: 'Larson',
+age: 25,
+profession: 'Detective',
+nationality: 'Japanese'
+} %}
+{% set my_array = [ 'first', 'second', 40, [1, 2, 3, 4] ] %}
 
 {% block body %}
-	
-	<p>{{ admin }}</p>
-	
-	<p>Hello World! Your id is: {{ id }}</p>
 
-	<ul class="nav_elements">
-		{% for i in 'A'..'Z' %}
-			<li>{{ i }}</li>
-		{% endfor %}
-	</ul>
+    <p>{{ admin }}</p>
 
-	{% for employee in employees %}
-		<p>{{ loop.index }} : {{ employee.first_name }} {{ employee.last_name }}</p>
-	{% endfor %}
+    <p>Hello World! Your id is: {{ id }}</p>
 
-	<p>{{ 'now' | date('d.m.y') }}</p>
+    <ul class="nav_elements">
+        {% for number in 1..52 %}
+            <li>{{ number }}</li>
+        {% endfor %}
+    </ul>
 
+    <ul class="nav_elements">
+        {% for i in 'A'..'Z' %}
+            <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    {% for employee in employees %}
+        <p>{{ loop.index }} : {{ employee.first_name }} {{ employee.last_name }}</p>
+    {% endfor %}
+
+    <p>{{ 'now' | date('d.m.y') }}</p>
+
+    <p>{{ person.first_name }} {{ person.last_name }}</p>
+
+    <ul>
+        {% for i in person %}
+            <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    {% for i in my_array %}
+        {% if i is iterable %}
+            {% for element in i %}
+                {{ element }}
+            {% endfor %}
+        {% else %}
+            {{ i }}
+        {% endif %}
+    {% endfor %}
+
+    {% if 4 < 5 and 5 > 2 %}
+        <p>This is a nice test</p>
+    {% endif %}
+
+    {% if unknown is defined %}
+        <p>The variable is defined</p>
+    {% else %}
+        <p>The variable is not defined</p>
+    {% endif %}
+
+    {% set super_hero = false %}
+    {% set empty_value = '' %}
+    {% if not super_hero %}
+        <p>He is not a super hero.</p>
+    {% endif %}
+
+    {% if empty_value is empty %}
+        <p>The value is empty</p>
+    {% endif %}
+
+    {% if 9 is divisible by(3) %}
+        <p>9 is divisible by 3</p>
+    {% endif %}
+
+    {% if 7 is odd %}
+        <p>7 is odd</p>
+    {% endif %}
+
+    {% set transaction = {
+    job_number: '201600000kl10',
+    amount: 2000.50,
+    company: 'My Inc LTD'
+    } %}
+
+    {% if transaction is iterable %}
+        <p>The object is iterable</p>
+    {% endif %}
+
+    {% set email = null %}
+    {% if email is null %}
+        <p>The email is null</p>
+    {% endif %}
+
+    {% set my_variable = '10' %}
+    {% if my_variable == 10 %}
+        <p>'10' == 10</p>
+    {% endif %}
+
+    {% if my_variable is same as (10) %}
+        '10' is same as 10
+    {% endif %}
+
+
+    {% set last_name = 'Juggoo' %}
+    {% if last_name starts with 'J' and last_name ends with 'o' %}
+        Nice job buddy!
+    {% endif %}
+
+    {% set value = 8.23 %} {# Testing if value is a numeric between 0 and 9 #}
+    {% if value matches '#^[0-9]#' %}
+        <p>The value is between 0 and 9</p>
+    {% endif %}
+
+    {% set members = ['John', 'Tim', 'Larry', 'Carol', 'Jennifer', 'Jean'] %}
+    {% if 'Larry' in members %}
+        <p>Larry is a member of the team</p>
+    {% endif %}
+
+    {{ 'Lans' not in members ? 'Is not member' : 'Is a member' }}
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>Num{{ loop.index }} {{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>Num{{ loop.index0 }} {{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>Num{{ loop.revindex }} {{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees %}
+            <tr {% if loop.first %} style="background-color: #5eb5e0" {% endif %}>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ loop.index ~ '/' ~ loop.length }}{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        {% for key, value in hobby %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{% if ((value == 'false') or (value == 'true')) %}
+                        {{ value is same as (true) ? 'Yes' : 'No' }}
+                    {% else %}{{ value }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees | reverse | slice(0, 2) %}
+            <tr>
+                <td>{{ loop.index ~ '/' ~ loop.length }}{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        {% for employee in employees  if employee.age < 40 %}
+            <tr>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}
-

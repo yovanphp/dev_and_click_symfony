@@ -31,9 +31,19 @@ class DefaultController extends Controller
     		],
     	];
 
+    	$hobby = [
+    	    'name' => 'Football',
+            'type' => 'Outdoor',
+            'mode' => 'Multi-player',
+            'is_dangerous' => true
+        ];
+
+    	dump($employees);
+
         return $this->render('EcommerceBundle:Default:index.html.twig', [
         	'id' => $id,
         	'employees' => $employees,
+            'hobby' => $hobby
         ]);
     }
 
